@@ -1,6 +1,6 @@
 <!-- Unfortunately this is required for the java heroku buildpack -->
 <project>
-` <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
   <groupId>com.dummy</groupId>
   <artifactId>dummy</artifactId>
   <version>1.0-SNAPSHOT</version>
