@@ -1,0 +1,3 @@
+require_relative 'heroku_buildpack_scale/runner'
+require_relative 'heroku_buildpack_scale/scale'
+require_relative 'heroku_buildpack_scale/bash_interface'

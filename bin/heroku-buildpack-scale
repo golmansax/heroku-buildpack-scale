@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/heroku_buildpack_scale'
+
+def usage
+  puts 'Usage: heroku-buildpack-scale [buildpack_url]'
+  exit
+end
+
+usage if ARGV.length < 1
+
+HerokuBuildpackScale::Runner.new.print_weight(ARGV[0])
