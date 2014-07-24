@@ -1,0 +1,14 @@
+Documentation:
+  Enabled: false
+
+FileName:
+  Exclude:
+    - bin/heroku-buildpack-scale
+
+Output:
+  Exclude:
+    - bin/*
+    - lib/heroku_buildpack_scale/runner.rb
+
+TrailingComma:
+  EnforcedStyleForMultiline: comma
