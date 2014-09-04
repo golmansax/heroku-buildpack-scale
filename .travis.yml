@@ -1,6 +1,9 @@
 language: ruby
 rvm:
   - 2.0.0
+before_script:
+  - npm install jshint
 script:
   - rubocop -D
   - travis-lint
+  - jshint app/assets/javascripts
