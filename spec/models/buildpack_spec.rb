@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Buildpack, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Buildpack do
+  describe '#pretty_name' do
+    xit 'it is a capitalized suffix of the url' do
+    end
+  end
 end
