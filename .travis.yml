@@ -9,6 +9,6 @@ before_script:
   - bundle exec rake db:migrate RAILS_ENV=test
 script:
   - rubocop -D
-  - travis lint
+  - travis lint --skip-completion-check
   - jshint app/assets/javascripts
   - bundle exec rake
