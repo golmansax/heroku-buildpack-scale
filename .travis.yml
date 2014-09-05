@@ -1,8 +1,9 @@
 language: ruby
+cache: bundler
 rvm:
   - 2.0.0
 env:
-  SECRET_KEY_BASE="$(bundle exec rake secret)"
+  secure: "EjyjRR+dJPDV5n7vypLLVjQcv3NEUGpq1aqoiU+idERE9qFw5GRPu9JPzTZ2ECjGqr6W506H4hu9ai0JbJKyzZpzaMb0wks7zQiJNHPqlFq5tlo3V+tTS10aop2HivLHOmUVE6bQEHz7Jwv7cRqJcrenA5HtqSahU20zuQq5GMc="
 before_install:
   - npm install jshint
 install:
