@@ -5,6 +5,6 @@ before_script:
   - npm install jshint
 script:
   - rubocop -D
-  - travis-lint
+  - travis lint
   - jshint app/assets/javascripts
-  - rake
+  - bundle exec rake

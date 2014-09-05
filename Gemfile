@@ -27,7 +27,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rubocop'
-gem 'travis-lint'
+gem 'travis'
 
 group :test do
   gem 'rspec-rails'
