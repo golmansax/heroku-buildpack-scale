@@ -1,6 +1,10 @@
 class Buildpack < ActiveRecord::Base
   def pretty_name
-    repo_name.match(/heroku-buildpack-(.*)/).captures.first.capitalize
+    snake_name.gsub(/-/, ' ').titleize
+  end
+
+  def snake_name
+    repo_name.match(/heroku-buildpack-(.*)/).captures.first
   end
 
   def repo_name

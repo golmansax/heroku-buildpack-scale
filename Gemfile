@@ -30,4 +30,8 @@ end
 
 gem 'rubocop'
 gem 'travis-lint'
-gem 'rspec-rails'
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end

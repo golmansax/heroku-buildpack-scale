@@ -7,3 +7,4 @@ script:
   - rubocop -D
   - travis-lint
   - jshint app/assets/javascripts
+  - rake
