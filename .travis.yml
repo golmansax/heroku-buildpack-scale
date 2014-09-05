@@ -1,8 +1,12 @@
 language: ruby
 rvm:
   - 2.0.0
-before_script:
+before_install:
   - npm install jshint
+install:
+  - bundle install
+before_script:
+  - bundle exec rake db:migrate RAILS_ENV=test
 script:
   - rubocop -D
   - travis lint
