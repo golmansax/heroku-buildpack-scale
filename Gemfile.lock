@@ -53,9 +53,6 @@ GEM
       railties (>= 3.0.0)
     hike (1.2.3)
     i18n (0.6.11)
-    jbuilder (1.5.3)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -156,7 +153,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   factory_girl_rails
-  jbuilder (~> 1.2)
   rails (~> 4.1.0)
   react-rails (~> 1.0.0.pre)!
   requirejs-rails

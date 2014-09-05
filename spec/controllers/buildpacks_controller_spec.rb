@@ -7,7 +7,7 @@ describe BuildpacksController do
     it 'returns buildpacks' do
       buildpack = create(:buildpack)
       get(:index, params)
-      expect(response.body).to eq BuildpackSerializer.new(buildpack).to_json
+      expect(response.body).to eq [BuildpackSerializer.new(buildpack)].to_json
     end
   end
 end
