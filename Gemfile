@@ -35,6 +35,6 @@ group :test do
 end
 
 source 'https://rails-assets.org' do
-   gem 'rails-assets-reqwest'
-   gem 'rails-assets-underscore'
+  gem 'rails-assets-reqwest'
+  gem 'rails-assets-underscore'
 end
