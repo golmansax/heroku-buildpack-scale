@@ -1,12 +1,11 @@
-define(['react', 'underscore'], function (React, _) {
+define([
+  'react', 'underscore', 'buildpack_row/klass'
+], function (React, _, BuildpackRow) {
   'use strict';
 
   return function (state, props) {
     var buildpackTemplates = _.map(state.buildpacks, function (buildpack) {
-      return React.DOM.tr(null,
-        React.DOM.td(null, buildpack.pretty_name),
-        React.DOM.td(null, buildpack.weight_in_mb)
-      );
+      return BuildpackRow(buildpack);
     });
 
     return React.DOM.table(null,
