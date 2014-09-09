@@ -1,4 +1,4 @@
-define(['react'], function (React) {
+define(['react', 'base_view_template'], function (React, template) {
   'use strict';
 
   return React.createClass(new BaseViewConfig());
@@ -11,7 +11,7 @@ define(['react'], function (React) {
     };
 
     function render() {
-      return React.DOM.div(null, 'Hello World!');
+      return template;
     }
   }
 });
