@@ -13,5 +13,5 @@ before_script:
 script:
   - rubocop -D
   - travis lint --skip-completion-check
-  - jshint app/assets/javascripts
+  - bundle exec rake jshint
   - bundle exec rake
