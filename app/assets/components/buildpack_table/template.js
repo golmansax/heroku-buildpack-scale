@@ -3,9 +3,9 @@ define([
 ], function (React, _, BuildpackRow) {
   'use strict';
 
-  return function (state, props) {
+  return function (state) {
     var buildpackTemplates = _.map(state.buildpacks, function (buildpack) {
-      return BuildpackRow(buildpack);
+      return new BuildpackRow(buildpack);
     });
 
     return React.DOM.table(null,
@@ -17,5 +17,5 @@ define([
       ),
       React.DOM.tbody(null, buildpackTemplates)
     );
-  }
+  };
 });

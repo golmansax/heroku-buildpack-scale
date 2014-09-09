@@ -20,7 +20,7 @@ define([
     }
 
     function componentDidMount() {
-      reqwest({ url: '/buildpacks', method: 'get' }).then(this.loadBuildpacks)
+      reqwest({ url: '/buildpacks', method: 'get' }).then(this.loadBuildpacks);
     }
 
     function loadBuildpacks(buildpacks) {

@@ -1,7 +1,6 @@
 class BuildpacksController < ApplicationController
   def index
-    respond_to do |format|
-      format.json { render json: Buildpack.all }
-    end
+    @buildpacks = Buildpack.all
+    respond_to { |format| format.json }
   end
 end

@@ -14,7 +14,7 @@ define([
     };
 
     function getInitialProps() {
-      return { url: '', weight_in_mb: 0, pretty_name: '' };
+      return { url: '', weightInMb: 0, prettyName: '' };
     }
 
     function render() {

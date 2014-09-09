@@ -4,9 +4,9 @@ define(['react'], function (React) {
   return function (state, props) {
     return React.DOM.tr(null,
       React.DOM.td(null,
-        React.DOM.a({ href: props.url }, props.pretty_name)
+        React.DOM.a({ href: props.url }, props.prettyName)
       ),
-      React.DOM.td(null, props.weight_in_mb)
+      React.DOM.td(null, props.weightInMb)
     );
-  }
+  };
 });
