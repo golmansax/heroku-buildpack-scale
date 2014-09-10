@@ -2,7 +2,7 @@ define(['react'], function (React) {
   'use strict';
 
   return function (state, props, onInputChange, onButtonClick) {
-    var sample_url =
+    var sampleUrl=
       'https://github.com/heroku-buildpack-ocaml/heroku-buildpack-ocaml.git';
 
     var inputAttributes = {
@@ -10,7 +10,7 @@ define(['react'], function (React) {
       type: 'text',
       value: state.url,
       className: 'form-control',
-      placeholder: 'Enter a buildpack URL (e.g. ' + sample_url + ')'
+      placeholder: 'Enter a buildpack URL (e.g. ' + sampleUrl + ')'
     };
 
     var buttonAttributes = {
