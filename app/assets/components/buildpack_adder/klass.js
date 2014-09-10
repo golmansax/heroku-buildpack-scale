@@ -12,7 +12,6 @@ define([
       getInitialState: getInitialState,
       onInputChange: onInputChange,
       onButtonClick: onButtonClick,
-      addBuildpack: addBuildpack,
       enableButton: enableButton,
       render: render
     };
@@ -30,11 +29,7 @@ define([
 
       var data = { buildpack: { url: this.state.url } };
       var params = { url: '/buildpacks', data: data, method: 'post' };
-      reqwest(params).then(this.addBuildpack).always(this.enableButton);
-    }
-
-    function addBuildpack(buildpack) {
-      console.log(buildpack);
+      reqwest(params).then(this.props.onBuildpackAdd).always(this.enableButton);
     }
 
     function enableButton() {

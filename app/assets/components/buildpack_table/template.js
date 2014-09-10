@@ -3,8 +3,8 @@ define([
 ], function (React, _, BuildpackRow) {
   'use strict';
 
-  return function (state) {
-    var buildpackRows = _.map(state.buildpacks, function (buildpack) {
+  return function (state, props) {
+    var buildpackRows = _.map(props.buildpacks, function (buildpack) {
       return new BuildpackRow(buildpack);
     });
 
