@@ -5,8 +5,11 @@ define(['react'], function (React) {
     var inputAttributes =
       { onChange: onInputChange, type: 'text', value: state.url };
 
-    var buttonAttributes =
-      { type: 'button', onClick: onButtonClick, disabled: state.buttonDisabled };
+    var buttonAttributes = {
+      type: 'button',
+      onClick: onButtonClick,
+      disabled: state.buttonDisabled
+    };
 
     return React.DOM.div(null,
       React.DOM.input(inputAttributes),

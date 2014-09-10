@@ -3,7 +3,7 @@ define([
 ], function (React, _, BuildpackAdder, BuildpackTable) {
   'use strict';
 
-  return function (state) {
+  return function () {
     return React.DOM.div(null,
       new BuildpackAdder(null),
       new BuildpackTable(null)
