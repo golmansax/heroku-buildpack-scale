@@ -4,7 +4,7 @@ define([
   'use strict';
 
   return function (state) {
-    var buildpackTemplates = _.map(state.buildpacks, function (buildpack) {
+    var buildpackRows = _.map(state.buildpacks, function (buildpack) {
       return new BuildpackRow(buildpack);
     });
 
@@ -15,7 +15,7 @@ define([
           React.DOM.th(null, 'Weight (MB)')
         )
       ),
-      React.DOM.tbody(null, buildpackTemplates)
+      React.DOM.tbody(null, buildpackRows)
     );
   };
 });

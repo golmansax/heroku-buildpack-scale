@@ -1,10 +1,10 @@
 require([
-  'window', 'react', 'buildpack_table/klass'
-], function (window, React, BuildpackTable) {
+  'window', 'react', 'app/klass'
+], function (window, React, HerokuBuildpackScale) {
   'use strict';
 
   var container = window.document.getElementById('react-container');
   if (container) {
-    React.renderComponent(new BuildpackTable(null), container);
+    React.renderComponent(new HerokuBuildpackScale(null), container);
   }
 });

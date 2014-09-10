@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904054825) do
+ActiveRecord::Schema.define(version: 20140910011251) do
 
   create_table "buildpacks", force: true do |t|
     t.string   "url",          null: false
-    t.integer  "weight_in_mb", null: false
+    t.integer  "weight_in_mb"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "buildpacks", ["url"], name: "index_buildpacks_on_url", unique: true
 
 end
