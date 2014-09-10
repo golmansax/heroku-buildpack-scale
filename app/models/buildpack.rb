@@ -1,8 +1,8 @@
 class Buildpack < ActiveRecord::Base
   validates :url,
-    format: %r{\Ahttps://github.com/.*heroku-buildpack-.*\.git\z},
-    uniqueness: true,
-    presence: true
+            format: %r{\Ahttps://github.com/.*heroku-buildpack-.*\.git\z},
+            uniqueness: true,
+            presence: true
 
   def pretty_name
     snake_name.gsub(/-/, ' ').titleize
