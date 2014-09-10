@@ -6,6 +6,7 @@ define([
   return function (state, props, addBuildpack) {
     return React.DOM.div(null,
       new BuildpackAdder({ onBuildpackAdd: addBuildpack }),
+      React.DOM.br(null),
       new BuildpackTable({ buildpacks: state.buildpacks })
     );
   };

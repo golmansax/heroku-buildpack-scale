@@ -8,7 +8,7 @@ define([
       return new BuildpackRow(buildpack);
     });
 
-    return React.DOM.table(null,
+    return React.DOM.table({ className: 'table' },
       React.DOM.thead(null,
         React.DOM.tr(null,
           React.DOM.th(null, 'Name'),
