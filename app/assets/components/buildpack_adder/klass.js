@@ -1,6 +1,6 @@
 define([
-  'react', 'buildpack_adder/template'
-], function (React, template) {
+  'react', 'reqwest', 'buildpack_adder/template'
+], function (React, reqwest, template) {
   'use strict';
 
   return React.createClass(new BuildpackAdderConfig());
@@ -12,6 +12,8 @@ define([
       getInitialState: getInitialState,
       onInputChange: onInputChange,
       onButtonClick: onButtonClick,
+      addBuildpack: addBuildpack,
+      enableButton: enableButton,
       render: render
     };
 
@@ -25,6 +27,18 @@ define([
 
     function onButtonClick() {
       this.setState({ buttonDisabled: true });
+
+      var data = { buildpack: { url: this.state.url } };
+      var params = { url: '/buildpacks', data: data, method: 'post' };
+      reqwest(params).then(this.addBuildpack).always(this.enableButton);
+    }
+
+    function addBuildpack(buildpack) {
+      console.log(buildpack);
+    }
+
+    function enableButton() {
+      this.setState({ buttonDisabled: false });
     }
 
     function render() {

@@ -1,4 +1,7 @@
 class BuildpacksController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+
   def index
     @buildpacks = Buildpack.all
     respond_to { |format| format.json }

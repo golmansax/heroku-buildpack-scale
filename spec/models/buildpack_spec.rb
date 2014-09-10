@@ -9,4 +9,28 @@ describe Buildpack do
       expect(buildpack.pretty_name).to eq 'Many Words'
     end
   end
+
+  describe 'validations' do
+    it 'does not allow bad urls' do
+      bad_urls = [
+        nil,
+        'hello',
+        'https://github.com/heroku/heroku-buildpack-java',
+      ]
+
+      bad_urls.each do |url|
+        is_expected.not_to allow_value(url).for(:url)
+      end
+    end
+
+    it 'allows good urls' do
+      good_urls = [
+        'https://github.com/heroku/heroku-buildpack-java.git',
+      ]
+
+      good_urls.each do |url|
+        is_expected.to allow_value(url).for(:url)
+      end
+    end
+  end
 end

@@ -1,5 +1,5 @@
 HerokuBuildpackScale::Application.routes.draw do
   root 'pages#index'
 
-  resources :buildpacks, only: :index
+  resources :buildpacks, only: [:index, :create]
 end

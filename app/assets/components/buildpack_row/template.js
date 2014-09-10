@@ -3,7 +3,7 @@ define(['react', 'underscore'], function (React, _) {
 
   return function (state, props) {
     var weight =
-      _.isUndefined(props.weightInMb) ? 'Pending...' : props.weightInMb;
+      _.isNumber(props.weightInMb) ? props.weightInMb : 'Pending...';
 
     return React.DOM.tr(null,
       React.DOM.td(null,
