@@ -1,6 +1,6 @@
 define([
-  'react', 'reqwest', 'app/template'
-], function (React, reqwest, template) {
+  'react', 'underscore', 'reqwest', 'app/template'
+], function (React, _, reqwest, template) {
   'use strict';
 
   return React.createClass(new Config());
@@ -44,7 +44,7 @@ define([
       this.setState({ inputUrl: event.target.value });
     }
 
-    function createBuildpack(buildpackData) {
+    function createBuildpack() {
       this.setState({ createDisabled: true });
 
       var data = { buildpack: { url: this.state.inputUrl } };

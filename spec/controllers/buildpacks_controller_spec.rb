@@ -7,7 +7,7 @@ describe BuildpacksController do
 
     it 'outputs a json of buildpacks' do
       buildpacks_builder = Jbuilder.new do |json|
-        json.array! [buildpack], :url, :pretty_name, :weight_in_mb
+        json.array! [buildpack], :url, :pretty_name, :weight_in_mb, :id
       end
 
       get(:index, params)
