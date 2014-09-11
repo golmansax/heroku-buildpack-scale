@@ -1,5 +1,5 @@
 define([
-  'react', 'reqwest', 'buildpack_table/template'
+  'react', 'reqwest', 'buildpack_form/template'
 ], function (React, reqwest, template) {
   'use strict';
 
@@ -13,9 +13,13 @@ define([
       render: render
     };
 
+
     function propTypes() {
       return {
-        buildpacks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+        onUrlChange: React.PropTypes.func.isRequired,
+        createBuildpack: React.PropTypes.func.isRequired,
+        url: React.PropTypes.string.isRequired,
+        buttonDisabled: React.PropTypes.bool.isRequired
       };
     }
 

@@ -3,29 +3,59 @@ define([
 ], function (React, reqwest, template) {
   'use strict';
 
-  return React.createClass(new HerokuBuildpackScaleConfig());
+  return React.createClass(new Config());
 
-  function HerokuBuildpackScaleConfig() {
+  function Config() {
     /* jshint validthis: true */
 
     return {
       getInitialState: getInitialState,
       componentDidMount: componentDidMount,
+      loadBuildpack: loadBuildpack,
       loadBuildpacks: loadBuildpacks,
-      addBuildpack: addBuildpack,
+      onUrlChange: onUrlChange,
+      createBuildpack: createBuildpack,
+      resetForm: resetForm,
       render: render
     };
 
     function getInitialState() {
-      return { buildpacks: [] };
+      return { buildpacks: [], createDisabled: false, inputUrl: '' };
     }
 
     function componentDidMount() {
       reqwest({ url: '/buildpacks', method: 'get' }).then(this.loadBuildpacks);
     }
 
+    function loadBuildpack(buildpack) {
+      this.loadBuildpacks([buildpack]);
+    }
+
     function loadBuildpacks(buildpacks) {
-      this.setState({ buildpacks: buildpacks });
+      var buildpackIndex = _.indexBy(this.state.buildpacks, 'id');
+      _.each(buildpacks, function (buildpack) {
+        if (!buildpackIndex[buildpack.id]) {
+          buildpackIndex[buildpack.id] = buildpack;
+        }
+      });
+
+      this.setState({ buildpacks: _.values(buildpackIndex) });
+    }
+
+    function onUrlChange(event) {
+      this.setState({ inputUrl: event.target.value });
+    }
+
+    function createBuildpack(buildpackData) {
+      this.setState({ createDisabled: true });
+
+      var data = { buildpack: { url: this.state.inputUrl } };
+      var params = { url: '/buildpacks', data: data, method: 'post' };
+      reqwest(params).then(this.loadBuildpack).always(this.resetForm);
+    }
+
+    function resetForm() {
+      this.setState({ createDisabled: false });
     }
 
     function addBuildpack(buildpack) {
@@ -34,7 +64,7 @@ define([
     }
 
     function render() {
-      return template(this.state, this.props, this.addBuildpack);
+      return template(this.state, this.props, this.onUrlChange, this.createBuildpack);
     }
   }
 });

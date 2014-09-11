@@ -1,22 +1,22 @@
 define(['react'], function (React) {
   'use strict';
 
-  return function (state, props, onInputChange, onButtonClick) {
+  return function (state, props) {
     var sampleUrl=
       'https://github.com/heroku-buildpack-ocaml/heroku-buildpack-ocaml.git';
 
     var inputAttributes = {
-      onChange: onInputChange,
+      onChange: props.onUrlChange,
       type: 'text',
-      value: state.url,
+      value: props.url,
       className: 'form-control',
       placeholder: 'Enter a buildpack URL (e.g. ' + sampleUrl + ')'
     };
 
     var buttonAttributes = {
       type: 'button',
-      onClick: onButtonClick,
-      disabled: state.buttonDisabled,
+      onClick: props.createBuildpack,
+      disabled: props.buttonDisabled,
       className: 'btn btn-primary'
     };
 
