@@ -20,6 +20,7 @@ class BuildpacksController < ApplicationController
   def update
     @buildpack = Buildpack.find(params[:id])
     @buildpack.update_attributes!(weight_in_mb: nil)
+    BuildpackWeigher.perform_async(@buildpack.id)
 
     respond_to do |format|
       format.json
