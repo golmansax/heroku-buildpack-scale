@@ -53,7 +53,7 @@ define([
     }
 
     function updateBuildpack(buildpackData) {
-      var params = { url: '/buildpacks/' + buildpackData.id, method: 'put' }
+      var params = { url: '/buildpacks/' + buildpackData.id, method: 'put' };
       reqwest(params).then(this.loadBuildpack);
     }
 
