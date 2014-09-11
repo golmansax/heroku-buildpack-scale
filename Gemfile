@@ -37,6 +37,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'coveralls', require: false
 end
 
 source 'https://rails-assets.org' do
