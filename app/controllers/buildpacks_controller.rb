@@ -10,7 +10,7 @@ class BuildpacksController < ApplicationController
     @buildpack = Buildpack.new(buildpack_params)
     respond_to do |format|
       if @buildpack.save
-        format.json
+        format.json { render :show }
       else
         format.json { render json: @buildpack.errors, status: :forbidden }
       end
@@ -23,7 +23,7 @@ class BuildpacksController < ApplicationController
     BuildpackWeigher.perform_async(@buildpack.id)
 
     respond_to do |format|
-      format.json
+      format.json { render :show }
     end
   end
 
