@@ -18,7 +18,9 @@ class BuildpacksController < ApplicationController
   end
 
   def update
-    @buildpack = Buildpack.find(buildpack_params)
+    @buildpack = Buildpack.find(params[:id])
+    @buildpack.update_attributes!(weight_in_mb: nil)
+
     respond_to do |format|
       format.json
     end

@@ -5,7 +5,10 @@ define([
 
   return function (state, props) {
     var buildpackRows = _.map(props.buildpacks, function (buildpack) {
-      return new BuildpackRow(buildpack);
+      var rowAttributes = _.extend(buildpack, {
+        updateBuildpack: props.updateBuildpack
+      });
+      return new BuildpackRow(rowAttributes);
     });
 
     return React.DOM.table({ className: 'table' },

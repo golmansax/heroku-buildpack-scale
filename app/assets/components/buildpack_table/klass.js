@@ -15,7 +15,8 @@ define([
 
     function propTypes() {
       return {
-        buildpacks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+        buildpacks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        updateBuildpack: React.PropTypes.func.isRequired
       };
     }
 

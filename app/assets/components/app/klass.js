@@ -15,6 +15,7 @@ define([
       loadBuildpacks: loadBuildpacks,
       onUrlChange: onUrlChange,
       createBuildpack: createBuildpack,
+      updateBuildpack: updateBuildpack,
       resetForm: resetForm,
       render: render
     };
@@ -32,12 +33,9 @@ define([
     }
 
     function loadBuildpacks(buildpacks) {
+      // We do this to override anything in our state with the loaded objects
       var buildpackIndex = _.indexBy(this.state.buildpacks, 'id');
-      _.each(buildpacks, function (buildpack) {
-        if (!buildpackIndex[buildpack.id]) {
-          buildpackIndex[buildpack.id] = buildpack;
-        }
-      });
+      buildpackIndex = _.defaults(_.indexBy(buildpacks, 'id'), buildpackIndex);
 
       this.setState({ buildpacks: _.values(buildpackIndex) });
     }
@@ -54,17 +52,20 @@ define([
       reqwest(params).then(this.loadBuildpack).always(this.resetForm);
     }
 
+    function updateBuildpack(buildpackData) {
+      var params = { url: '/buildpacks/' + buildpackData.id, method: 'put' }
+      reqwest(params).then(this.loadBuildpack);
+    }
+
     function resetForm() {
       this.setState({ createDisabled: false });
     }
 
-    function addBuildpack(buildpack) {
-      this.state.buildpacks.push(buildpack);
-      this.setState({ buildpacks: this.state.buildpacks });
-    }
-
     function render() {
-      return template(this.state, this.props, this.onUrlChange, this.createBuildpack);
+      return template(
+        this.state, this.props, this.onUrlChange, this.createBuildpack,
+        this.updateBuildpack
+      );
     }
   }
 });

@@ -3,7 +3,9 @@ define([
 ], function (React, _, BuildpackForm, BuildpackTable) {
   'use strict';
 
-  return function (state, props, onUrlChange, createBuildpack) {
+  return function (state, props, onUrlChange, createBuildpack,
+                   updateBuildpack) {
+
     var formAttributes = {
       createBuildpack: createBuildpack,
       onUrlChange: onUrlChange,
@@ -11,10 +13,15 @@ define([
       url: state.inputUrl
     };
 
+    var tableAttributes = {
+      buildpacks: state.buildpacks,
+      updateBuildpack: updateBuildpack
+    };
+
     return React.DOM.div(null,
       new BuildpackForm(formAttributes),
       React.DOM.br(null),
-      new BuildpackTable({ buildpacks: state.buildpacks })
+      new BuildpackTable(tableAttributes)
     );
   };
 });
