@@ -1,5 +1,6 @@
 class BuildpackWeigher
   include Sidekiq::Worker
+  sidekiq_options retry: false
 
   def perform(buildpack_id)
     buildpack = Buildpack.find(buildpack_id)
