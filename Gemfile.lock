@@ -111,6 +111,8 @@ GEM
       json
       websocket (~> 1.0)
     rack (1.5.2)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.6)
@@ -123,8 +125,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
-    rails-assets-reqwest (1.1.2)
-    rails-assets-underscore (1.7.0)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -188,6 +188,10 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
     slop (3.6.0)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -235,8 +239,6 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder
   rails (~> 4.1.0)
-  rails-assets-reqwest!
-  rails-assets-underscore!
   react-rails (~> 1.0.0.pre)!
   requirejs-rails
   rspec-rails
@@ -245,6 +247,7 @@ DEPENDENCIES
   sdoc
   shoulda-matchers
   sidekiq
+  sinatra (>= 1.3.0)
   sqlite3
   travis
   uglifier (>= 1.3.0)
