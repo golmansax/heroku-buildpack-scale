@@ -125,6 +125,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
+    rails-assets-reqwest (1.1.2)
+    rails-assets-underscore (1.7.0)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -239,6 +241,8 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder
   rails (~> 4.1.0)
+  rails-assets-reqwest!
+  rails-assets-underscore!
   react-rails (~> 1.0.0.pre)!
   requirejs-rails
   rspec-rails
