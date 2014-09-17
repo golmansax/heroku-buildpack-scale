@@ -26,5 +26,6 @@ module HerokuBuildpackScale
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.paths << Rails.root.join('assets', 'components')
+    config.assets.precompile << 'index.css'
   end
 end
