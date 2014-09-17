@@ -8,6 +8,13 @@ GIT
       rails (>= 3.1)
       react-source (= 0.11.1)
 
+GIT
+  remote: https://github.com/golmansax/requirejs-rails
+  revision: fcb083c460d83a9622cf891d6d65c27982f44f09
+  specs:
+    requirejs-rails (0.9.4)
+      railties (>= 3.1.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -140,8 +147,6 @@ GEM
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
-    requirejs-rails (0.9.4)
-      railties (>= 3.1.1)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -244,7 +249,7 @@ DEPENDENCIES
   rails-assets-reqwest!
   rails-assets-underscore!
   react-rails (~> 1.0.0.pre)!
-  requirejs-rails
+  requirejs-rails!
   rspec-rails
   rubocop
   sass-rails (~> 4.0.0)

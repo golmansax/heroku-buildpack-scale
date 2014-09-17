@@ -11,7 +11,7 @@ gem 'sinatra', '>= 1.3.0', require: false
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
-gem 'requirejs-rails'
+gem 'requirejs-rails', git: 'https://github.com/golmansax/requirejs-rails'
 gem 'bootstrap-sass'
 
 group :doc do
