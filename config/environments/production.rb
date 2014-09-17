@@ -58,8 +58,9 @@ HerokuBuildpackScale::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host =
-    'http://www.golmansax.com/heroku-buildpack-scale'
+  asset_host = 'http://www.golmansax.com/heroku-buildpack-scale'
+  config.action_controller.asset_host = asset_host
+  config.requirejs.run_config['baseUrl'] = asset_host
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder
