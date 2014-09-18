@@ -2,11 +2,26 @@ module HerokuBuildpackScale
   class BashInterface
     require 'pathname'
 
-    def weight_in_mb(url)
+    def initialize
       fail_message = 'Need to install heroku-buildpack-dummy'
       fail fail_message unless Pathname(dummy_dir).directory?
+    end
 
-      output = raw_weight_output(url)
+    def weight_in_mb(url)
+      push_new_url(url) if url == current_url
+      weight_for_current_url
+    end
+
+    def push_new_url(url)
+      command = "cd #{dummy_dir} && echo #{url} > .buildpacks && " \
+        "git commit -am 'Changing buildpack to #{url}' && " \
+        'git push --force && git push heroku master --force'
+
+      `#{command}`
+    end
+
+    def weight_for_current_url
+      output = raw_weight_output_for_current_url
 
       # I've seen Heroku output either:
       #  - 745 (representing 745 KB)
@@ -18,14 +33,16 @@ module HerokuBuildpackScale
       end
     end
 
-    def raw_weight_output(url)
-      command = "cd #{dummy_dir} && echo #{url} > .buildpacks && " \
-        "git commit -am 'Changing buildpack to #{url}' && " \
-        'git push --force && git push heroku master --force && ' \
-        'heroku apps:info'
+    def raw_weight_output_for_current_url
+      command = "cd #{dummy_dir} && heroku apps:info"
 
       output = `#{command}`
       output.match(/Slug Size:\s*(.*)$/).captures.first
+    end
+
+    def current_url
+      command = "cat #{File.join(dummy_dir, '.buildpacks')}"
+      `#{command}`.strip
     end
 
     def dummy_dir
