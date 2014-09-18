@@ -1,6 +1,6 @@
 define([
-  'react', 'underscore', 'reqwest', 'app/template'
-], function (React, _, reqwest, template) {
+  'window', 'react', 'underscore', 'reqwest', 'app/template'
+], function (window, React, _, reqwest, template) {
   'use strict';
 
   return React.createClass(new Config());
@@ -11,9 +11,11 @@ define([
     return {
       getInitialState: getInitialState,
       componentDidMount: componentDidMount,
-      loadBuildpack: loadBuildpack,
-      loadBuildpacks: loadBuildpacks,
+      loadBuildpackIntoState: loadBuildpackIntoState,
+      loadBuildpacksIntoState: loadBuildpacksIntoState,
       onUrlChange: onUrlChange,
+      getBuildpacks: getBuildpacks,
+      getBuildpacksAfterSomeTime: getBuildpacksAfterSomeTime,
       createBuildpack: createBuildpack,
       updateBuildpack: updateBuildpack,
       resetForm: resetForm,
@@ -25,14 +27,24 @@ define([
     }
 
     function componentDidMount() {
-      reqwest({ url: '/buildpacks', method: 'get' }).then(this.loadBuildpacks);
+      this.getBuildpacks();
     }
 
-    function loadBuildpack(buildpack) {
-      this.loadBuildpacks([buildpack]);
+    function getBuildpacks() {
+      reqwest({ url: '/buildpacks', method: 'get' })
+        .then(this.loadBuildpacksIntoState)
+        .then(this.getBuildpacksAfterSomeTime);
     }
 
-    function loadBuildpacks(buildpacks) {
+    function getBuildpacksAfterSomeTime() {
+      window.setTimeout(this.getBuildpacks, 10 * 1000);
+    }
+
+    function loadBuildpackIntoState(buildpack) {
+      this.loadBuildpacksIntoState([buildpack]);
+    }
+
+    function loadBuildpacksIntoState(buildpacks) {
       // We do this to override anything in our state with the loaded objects
       var buildpackIndex = _.indexBy(this.state.buildpacks, 'id');
       buildpackIndex = _.defaults(_.indexBy(buildpacks, 'id'), buildpackIndex);
@@ -49,12 +61,12 @@ define([
 
       var data = { buildpack: { url: this.state.inputUrl } };
       var params = { url: '/buildpacks', data: data, method: 'post' };
-      reqwest(params).then(this.loadBuildpack).always(this.resetForm);
+      reqwest(params).then(this.loadBuildpackIntoState).always(this.resetForm);
     }
 
     function updateBuildpack(buildpackData) {
       var params = { url: '/buildpacks/' + buildpackData.id, method: 'put' };
-      reqwest(params).then(this.loadBuildpack);
+      reqwest(params).then(this.loadBuildpackIntoState);
     }
 
     function resetForm() {
