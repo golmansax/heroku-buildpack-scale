@@ -5,6 +5,10 @@ describe BuildpacksController do
   let(:url) { 'https://github.com/puffnfresh/heroku-buildpack-haskell.git' }
   let(:buildpack) { create(:buildpack) }
 
+  before(:each) do
+    allow(BuildpackWeigher).to receive(:perform_async)
+  end
+
   describe '#index' do
     it 'outputs a json of buildpacks' do
       buildpacks_builder = Jbuilder.new do |json|
@@ -29,6 +33,12 @@ describe BuildpacksController do
       expect(buildpack.url).to eq(url)
     end
 
+    it 'runs the weigher asynchronously' do
+      new_buildpack_id = Buildpack.count + 1
+      expect(BuildpackWeigher).to receive(:perform_async).with(new_buildpack_id)
+      put(:update, params.merge(id: buildpack.id))
+    end
+
     it 'returns forbidden if the params are invalid' do
       post(:create, params.merge(buildpack: { url: '' }))
       expect(response.status).to eq(403)
@@ -36,10 +46,6 @@ describe BuildpacksController do
   end
 
   describe '#update' do
-    before(:each) do
-      allow(BuildpackWeigher).to receive(:perform_async)
-    end
-
     it 'nils out the buildpack weight' do
       put(:update, params.merge(id: buildpack.id))
       expect(buildpack.reload.weight_in_mb).to be_nil

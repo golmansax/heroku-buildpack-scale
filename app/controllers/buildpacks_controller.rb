@@ -8,8 +8,10 @@ class BuildpacksController < ApplicationController
 
   def create
     @buildpack = Buildpack.new(buildpack_params)
+
     respond_to do |format|
       if @buildpack.save
+        BuildpackWeigher.perform_async(@buildpack.id)
         format.json { render :show }
       else
         format.json { render json: @buildpack.errors, status: :forbidden }
