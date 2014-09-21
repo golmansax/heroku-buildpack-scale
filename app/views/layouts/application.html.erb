@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>How heavy is your Buildpack? | Heroku Buildpack Scale</title>
+  <%= include_gon(camel_case: true) %>
   <%= requirejs_include_tag 'react_bootstrap' %>
   <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans' %>
   <%= stylesheet_link_tag 'index' %>
