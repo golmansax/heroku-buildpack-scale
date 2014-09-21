@@ -4,6 +4,6 @@ class PagesController < ApplicationController
       buildpacks_path: buildpacks_path,
       buildpack_path: buildpack_path('<%= id %>'),
     }
-    gon.push(routes)
+    gon.push(routes: routes)
   end
 end
