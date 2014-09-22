@@ -4,7 +4,11 @@ module HerokuBuildpackScale
 
     def initialize
       fail_message = 'Need to install heroku-buildpack-dummy'
-      fail fail_message unless Pathname(dummy_dir).directory?
+      fail fail_message unless dummy_repo_exists?
+    end
+
+    def dummy_repo_exists?
+      Pathname(dummy_dir).directory?
     end
 
     def weight_in_mb(url)

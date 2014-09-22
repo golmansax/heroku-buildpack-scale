@@ -7,6 +7,11 @@ module HerokuBuildpackScale
     let(:ruby_url) { 'https://github.com/heroku/heroku-buildpack-ruby.git' }
     let(:java_url) { 'https://github.com/heroku/heroku-buildpack-java.git' }
 
+    before(:each) do
+      receive_expected = receive(:dummy_repo_exists?).and_return(true)
+      expect_any_instance_of(BashInterface).to receive_expected
+    end
+
     describe '#weight_in_mb' do
       before(:each) do
         allow(bash_interface).to receive(:push_new_url)
