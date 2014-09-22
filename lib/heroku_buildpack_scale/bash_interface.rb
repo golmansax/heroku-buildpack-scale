@@ -8,7 +8,7 @@ module HerokuBuildpackScale
     end
 
     def weight_in_mb(url)
-      push_new_url(url) if url == current_url
+      push_new_url(url) if url != current_url
       weight_for_current_url
     end
 
