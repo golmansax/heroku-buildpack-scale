@@ -1,6 +1,6 @@
 class Buildpack < ActiveRecord::Base
   validates :url,
-            format: %r{\Ahttps://github.com/.*heroku-buildpack-.*\.git\z},
+            format: %r{\Ahttps://github.com/.*heroku-buildpack-.*\z},
             uniqueness: true,
             presence: true
 

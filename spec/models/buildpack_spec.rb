@@ -15,7 +15,7 @@ describe Buildpack do
       bad_urls = [
         nil,
         'hello',
-        'https://github.com/heroku/heroku-buildpack-java',
+        'https://github.com/heroku/heroku-buildpacks-java',
       ]
 
       bad_urls.each do |url|
