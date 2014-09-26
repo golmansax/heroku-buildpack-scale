@@ -3,7 +3,7 @@ define(['react'], function (React) {
 
   return function (state, props) {
     var sampleUrl=
-      'https://github.com/heroku-buildpack-ocaml/heroku-buildpack-ocaml.git';
+      'https://github.com/heroku-buildpack-ocaml/heroku-buildpack-ocaml';
 
     var inputAttributes = {
       onChange: props.onUrlChange,
