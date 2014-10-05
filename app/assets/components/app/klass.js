@@ -1,6 +1,6 @@
 define([
-  'window', 'react', 'underscore', 'reqwest', 'routes', 'app/template'
-], function (window, React, _, reqwest, routes, template) {
+  'window', 'react', 'underscore', 'buildpacks', 'app/template'
+], function (window, React, _, buildpacks, template) {
   'use strict';
 
   return React.createClass(new Config());
@@ -31,7 +31,7 @@ define([
     }
 
     function getBuildpacks() {
-      reqwest({ url: routes.buildpacksPath(), method: 'get' })
+      buildpacks.getAll()
         .then(this.loadBuildpacksIntoState)
         .then(this.getBuildpacksAfterSomeTime);
     }
@@ -59,15 +59,13 @@ define([
     function createBuildpack() {
       this.setState({ createDisabled: true });
 
-      var data = { buildpack: { url: this.state.inputUrl } };
-      var params = { url: routes.buildpacksPath(), data: data, method: 'post' };
-      reqwest(params).then(this.loadBuildpackIntoState).always(this.resetForm);
+      buildpacks.create({ buildpack: { url: this.state.inputUrl } })
+        .then(this.loadBuildpackIntoState)
+        .always(this.resetForm);
     }
 
     function updateBuildpack(buildpackData) {
-      var buildpackPath = routes.buildpackPath({ id: buildpackData.id });
-      var params = { url: buildpackPath, method: 'put' };
-      reqwest(params).then(this.loadBuildpackIntoState);
+      buildpacks.update(buildpackData.id).then(this.loadBuildpackIntoState);
     }
 
     function resetForm() {
