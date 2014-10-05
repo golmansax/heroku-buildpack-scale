@@ -14,6 +14,7 @@ define([
       loadBuildpackIntoState: loadBuildpackIntoState,
       loadBuildpacksIntoState: loadBuildpacksIntoState,
       onUrlChange: onUrlChange,
+      onQueryChange: onQueryChange,
       getBuildpacks: getBuildpacks,
       getBuildpacksAfterSomeTime: getBuildpacksAfterSomeTime,
       createBuildpack: createBuildpack,
@@ -23,7 +24,7 @@ define([
     };
 
     function getInitialState() {
-      return { buildpacks: [], createDisabled: false, inputUrl: '' };
+      return { buildpacks: [], createDisabled: false, inputUrl: '', query: '' };
     }
 
     function componentDidMount() {
@@ -56,6 +57,10 @@ define([
       this.setState({ inputUrl: event.target.value });
     }
 
+    function onQueryChange(event) {
+      this.setState({ query: event.target.value });
+    }
+
     function createBuildpack() {
       this.setState({ createDisabled: true });
 
@@ -75,7 +80,7 @@ define([
     function render() {
       return template(
         this.state, this.props, this.onUrlChange, this.createBuildpack,
-        this.updateBuildpack
+        this.updateBuildpack, this.onQueryChange
       );
     }
   }
