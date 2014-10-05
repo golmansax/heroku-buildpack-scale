@@ -1,12 +1,14 @@
 define([
-  'window', 'react', 'underscore', 'buildpacks', 'app/template'
-], function (window, React, _, buildpacks, template) {
+  'window', 'react', 'underscore', 'buildpacks', './renderer'
+], function (window, React, _, buildpacks, Renderer) {
   'use strict';
 
   return React.createClass(new Config());
 
   function Config() {
     /* jshint validthis: true */
+
+    var renderer;
 
     return {
       getInitialState: getInitialState,
@@ -20,6 +22,7 @@ define([
       createBuildpack: createBuildpack,
       updateBuildpack: updateBuildpack,
       resetForm: resetForm,
+      initRenderer: initRenderer,
       render: render
     };
 
@@ -78,9 +81,14 @@ define([
     }
 
     function render() {
-      return template(
-        this.state, this.props, this.onUrlChange, this.createBuildpack,
-        this.updateBuildpack, this.onQueryChange
+      if (!renderer) { this.initRenderer(); }
+      return renderer.render(this.state, this.props);
+    }
+
+    function initRenderer() {
+      renderer = new Renderer(
+        this.onUrlChange, this.createBuildpack, this.updateBuildpack,
+        this.onQueryChange
       );
     }
   }
