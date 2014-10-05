@@ -14,25 +14,31 @@ define([
       placeholder: 'Find a buildpack (e.g. Ruby, Python, Java)'
     };
 
-    var adderAttributes = {
-      createBuildpack: createBuildpack,
-      onUrlChange: onUrlChange,
-      buttonDisabled: state.createDisabled,
-      url: state.inputUrl
-    };
-
+    var tableOrAdder;
     var buildpacks = _.filter(state.buildpacks, queryFilter(state.query));
-    var tableAttributes = {
-      buildpacks: buildpacks,
-      updateBuildpack: updateBuildpack
-    };
+
+    if (_.any(buildpacks)) {
+      var tableAttributes = {
+        buildpacks: buildpacks,
+        updateBuildpack: updateBuildpack
+      };
+
+      tableOrAdder = new BuildpackTable(tableAttributes);
+    } else {
+      var adderAttributes = {
+        createBuildpack: createBuildpack,
+        onUrlChange: onUrlChange,
+        buttonDisabled: state.createDisabled,
+        url: state.inputUrl
+      };
+
+      tableOrAdder = new BuildpackAdder(adderAttributes);
+    }
 
     return React.DOM.div(null,
       React.DOM.input(inputAttributes),
       React.DOM.br(null),
-      new BuildpackAdder(adderAttributes),
-      React.DOM.br(null),
-      new BuildpackTable(tableAttributes)
+      tableOrAdder
     );
   };
 
