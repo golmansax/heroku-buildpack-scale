@@ -1,5 +1,5 @@
 define([
-  'react', 'reqwest', 'buildpack_form/template'
+  'react', 'reqwest', './template'
 ], function (React, reqwest, template) {
   'use strict';
 

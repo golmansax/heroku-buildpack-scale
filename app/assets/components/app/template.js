@@ -1,6 +1,6 @@
 define([
-  'react', 'underscore', 'buildpack_form/klass', 'buildpack_table/klass'
-], function (React, _, BuildpackForm, BuildpackTable) {
+  'react', 'underscore', 'buildpack_adder/klass', 'buildpack_table/klass'
+], function (React, _, BuildpackAdder, BuildpackTable) {
   'use strict';
 
   return function (state, props, onUrlChange, createBuildpack,
@@ -14,7 +14,7 @@ define([
       placeholder: 'Find a buildpack (e.g. Ruby, Python, Java)'
     };
 
-    var formAttributes = {
+    var adderAttributes = {
       createBuildpack: createBuildpack,
       onUrlChange: onUrlChange,
       buttonDisabled: state.createDisabled,
@@ -30,7 +30,7 @@ define([
     return React.DOM.div(null,
       React.DOM.input(inputAttributes),
       React.DOM.br(null),
-      new BuildpackForm(formAttributes),
+      new BuildpackAdder(adderAttributes),
       React.DOM.br(null),
       new BuildpackTable(tableAttributes)
     );
