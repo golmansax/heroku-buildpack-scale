@@ -10,7 +10,7 @@ define([
 
     this.render = render;
 
-    function render(state, props) {
+    function render(state) {
       var tableOrAdder;
       var buildpacks = _.filter(state.buildpacks, queryFilter(state.query));
       if (_.any(buildpacks)) {
@@ -61,7 +61,8 @@ define([
     function queryFilter(query) {
       var lowerCaseQuery = query.toLowerCase();
       return function (buildpack) {
-        var adjustedName = buildpack.prettyName.replace(/\s/g, '').toLowerCase();
+        var adjustedName =
+          buildpack.prettyName.replace(/\s/g, '').toLowerCase();
         return adjustedName.indexOf(lowerCaseQuery) >= 0;
       };
     }

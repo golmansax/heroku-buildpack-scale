@@ -22,7 +22,7 @@
   "trailing": true,
   "maxparams": 6,
   "maxdepth": 3,
-  "maxstatements": 12, // TODO fix
+  "maxstatements": 15, // TODO fix
   "maxcomplexity": 3,
   "maxlen": 80,
 
