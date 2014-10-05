@@ -39,7 +39,8 @@ define([
   function queryFilter(query) {
     var lowerCaseQuery = query.toLowerCase();
     return function (buildpack) {
-      return buildpack.prettyName.toLowerCase().indexOf(lowerCaseQuery) >= 0;
+      var adjustedName = buildpack.prettyName.replace(/\s/g, '').toLowerCase();
+      return adjustedName.indexOf(lowerCaseQuery) >= 0;
     };
   }
 });
