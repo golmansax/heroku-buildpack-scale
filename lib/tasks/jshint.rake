@@ -1,3 +1,3 @@
 task :jshint do
-  sh 'jshint app/assets/components'
+  sh 'jshint app/assets/components app/assets/javascripts'
 end
