@@ -9,7 +9,7 @@ define(['react'], function (React) {
       onChange: props.onUrlChange,
       type: 'text',
       value: props.url,
-      className: 'form-control',
+      className: 'form-control col-md-8',
       placeholder: 'Enter a buildpack URL (e.g. ' + sampleUrl + ')'
     };
 
@@ -17,12 +17,16 @@ define(['react'], function (React) {
       type: 'button',
       onClick: props.createBuildpack,
       disabled: props.buttonDisabled,
-      className: 'btn btn-primary'
+      className: 'btn btn-primary btn-block col-md-4'
     };
 
-    return React.DOM.div(null,
-      React.DOM.input(inputAttributes),
-      React.DOM.button(buttonAttributes, 'Weigh!')
+    return React.DOM.div({ className: 'form-group' },
+      React.DOM.div({ className: 'col-md-8' },
+        React.DOM.input(inputAttributes)
+      ),
+      React.DOM.div({ className: 'col-md-4' },
+        React.DOM.button(buttonAttributes, 'Weigh!')
+      )
     );
   };
 });

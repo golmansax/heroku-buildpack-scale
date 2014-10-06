@@ -6,24 +6,28 @@ define([
   return Renderer;
 
   function Renderer(onUrlChange, createBuildpack, updateBuildpack,
-                    onQueryChange) {
+                    onQueryChange, showBuildpackAdder) {
 
     this.render = render;
 
     function render(state) {
-      var tableOrAdder;
       var buildpacks = _.filter(state.buildpacks, queryFilter(state.query));
       if (_.any(buildpacks)) {
-        tableOrAdder = buildpackTable(buildpacks);
+        return React.DOM.div(null,
+          searchBox(state.query),
+          React.DOM.br(null),
+          buildpackTable(buildpacks),
+          buildpackAdderOption(
+            state.inputUrl, state.createDisabled, state.adderShowing
+          )
+        );
       } else {
-        tableOrAdder = buildpackAdder(state.inputUrl, state.createDisabled);
+        return React.DOM.div(null,
+          searchBox(state.query),
+          React.DOM.br(null),
+          buildpackAdder(state.inputUrl, state.createDisabled)
+        );
       }
-
-      return React.DOM.div(null,
-        searchBox(state.query),
-        React.DOM.br(null),
-        tableOrAdder
-      );
     }
 
     function searchBox(query) {
@@ -56,6 +60,22 @@ define([
       };
 
       return new BuildpackAdder(adderAttributes);
+    }
+
+    function buildpackAdderOption(inputUrl, buttonDisabled, adderShowing) {
+      if (adderShowing) {
+        return buildpackAdder(inputUrl, buttonDisabled);
+      } else {
+        var linkAttributes = {
+          href: '#',
+          onClick: showBuildpackAdder
+        };
+
+        return React.DOM.p(null,
+          'or ',
+          React.DOM.a(linkAttributes, 'add a buildpack!')
+        );
+      }
     }
 
     function queryFilter(query) {

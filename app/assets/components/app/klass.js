@@ -22,12 +22,19 @@ define([
       createBuildpack: createBuildpack,
       updateBuildpack: updateBuildpack,
       resetForm: resetForm,
+      showBuildpackAdder: showBuildpackAdder,
       initRenderer: initRenderer,
       render: render
     };
 
     function getInitialState() {
-      return { buildpacks: [], createDisabled: false, inputUrl: '', query: '' };
+      return {
+        buildpacks: [],
+        createDisabled: false,
+        inputUrl: '',
+        query: '',
+        adderShowing: false
+      };
     }
 
     function componentDidMount() {
@@ -76,6 +83,11 @@ define([
       buildpacks.update(buildpackData.id).then(this.loadBuildpackIntoState);
     }
 
+    function showBuildpackAdder(event) {
+      event.preventDefault();
+      this.setState({ adderShowing: true });
+    }
+
     function resetForm() {
       this.setState({ createDisabled: false });
     }
@@ -88,7 +100,7 @@ define([
     function initRenderer() {
       renderer = new Renderer(
         this.onUrlChange, this.createBuildpack, this.updateBuildpack,
-        this.onQueryChange
+        this.onQueryChange, this.showBuildpackAdder
       );
     }
   }

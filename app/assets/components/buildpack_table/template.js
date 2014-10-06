@@ -6,7 +6,8 @@ define([
   return function (state, props) {
     var buildpackRows = _.map(props.buildpacks, function (buildpack) {
       var rowAttributes = _.extend(buildpack, {
-        updateBuildpack: props.updateBuildpack
+        updateBuildpack: props.updateBuildpack,
+        key: buildpack.id
       });
       return new BuildpackRow(rowAttributes);
     });
