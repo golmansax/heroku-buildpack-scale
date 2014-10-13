@@ -19,6 +19,7 @@ define([
         url: React.PropTypes.string.isRequired,
         weightInMb: React.PropTypes.number,
         prettyName: React.PropTypes.string.isRequired,
+        lastWeighed: React.PropTypes.string.isRequired,
         updateBuildpack: React.PropTypes.func.isRequired,
         id: React.PropTypes.number.isRequired
       };

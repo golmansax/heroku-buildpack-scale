@@ -1,5 +1,5 @@
 require([
-  'window', 'react', 'app/klass'
+  'window', 'react', 'app/klass', 'date'
 ], function (window, React, HerokuBuildpackScale) {
   'use strict';
 

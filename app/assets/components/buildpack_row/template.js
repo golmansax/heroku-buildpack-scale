@@ -12,14 +12,22 @@ define(['react', 'underscore'], function (React, _) {
       disabled: pendingWeight
     };
 
+    var formattedDate =
+      pendingWeight ? '' : formatDate(new Date(props.lastWeighed));
+
     return React.DOM.tr(null,
       React.DOM.td(null,
         React.DOM.a({ href: props.url }, props.prettyName)
       ),
       React.DOM.td(null, weight),
+      React.DOM.td(null, formattedDate),
       React.DOM.td(null,
         React.DOM.button(buttonAttributes, 'Weigh again')
       )
     );
   };
+
+  function formatDate(date) {
+    return date.toString('MMM d yyyy');
+  }
 });

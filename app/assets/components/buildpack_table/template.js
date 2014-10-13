@@ -17,6 +17,7 @@ define([
         React.DOM.tr(null,
           React.DOM.th(null, 'Name'),
           React.DOM.th(null, 'Weight (MB)'),
+          React.DOM.th(null, 'Last weighed'),
           React.DOM.th(null)
         )
       ),

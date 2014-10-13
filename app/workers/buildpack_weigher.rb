@@ -4,7 +4,10 @@ class BuildpackWeigher
 
   def perform(buildpack_id)
     buildpack = Buildpack.find(buildpack_id)
-    buildpack.update_attributes!(weight_in_mb: weight_in_mb(buildpack.url))
+    buildpack.update_attributes!(
+      weight_in_mb: weight_in_mb(buildpack.url),
+      last_weighed: Time.now,
+    )
   end
 
   def weight_in_mb(url)
